@@ -14,7 +14,7 @@ public class Interfaz {
     }
     
     public static void mostrarTablero() {
-        System.out.println("Menu, Seleccione una opcion para contunar");
+        System.out.println("Menu, Seleccione una opcion para continuar");
         System.out.println("a) Registrar jugador");
         System.out.println("b) Establecer tablero");
         System.out.println("c) Jugar partida");
