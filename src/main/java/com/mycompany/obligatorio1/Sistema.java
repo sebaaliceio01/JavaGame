@@ -2,6 +2,9 @@ package com.mycompany.obligatorio1;
 
 import java.util.*;
 
+//Sebastian Aliceio 286406
+//Ianco Rodriguez 243406
+
 /**
  *
  * @author Sebastian
@@ -32,7 +35,6 @@ public class Sistema {
             opcionD();
         } else if (opcionElegida.equalsIgnoreCase("e")) {
             System.out.println("====== Gracias por jugar ======");
-            return;
         } else {
             System.out.println("Entrada invalida");
             mostrarTablero();

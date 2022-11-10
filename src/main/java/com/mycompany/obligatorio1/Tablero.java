@@ -3,6 +3,9 @@ package com.mycompany.obligatorio1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Sebastian Aliceio 286406
+//Ianco Rodriguez 243406
+
 /**
  *
  * @author Sebastian
@@ -10,7 +13,6 @@ import java.util.Scanner;
 public class Tablero {
 
     public static void main(String[] args) {
-        getTablero(getStandard());
     }
 
     public static String[][] getTableroSeleccionado(String tableroSeleccionado) {
@@ -33,12 +35,12 @@ public class Tablero {
 
     public static String[][] getStandard() {
         String[][] tablero = {
-                { "A", " ", "A", " ", "A", "R" },
-                { " ", "A", "R", " ", "A", "A" },
-                { "A", " ", " ", " ", "A", "R" },
-                { "R", "A", "R", "A", " ", "A" },
-                { "A", " ", "A", " ", "A", "A" },
-                { "A", "A", "R", "A", "A", "A" },
+                { "A", "R", "A", "R", "A", "R" },
+                { "R", "A", "R", "A", "R", "A" },
+                { "A", "R", "A", "R", "A", "R" },
+                { "R", "A", "R", "A", "R", "A" },
+                { "A", "R", "A", "R", "A", "R" },
+                { "R", "A", "R", "A", "R", "A" },
         };
         return tablero;
     }
@@ -47,10 +49,10 @@ public class Tablero {
         String[][] tablero = {
                 { "A", "R", " ", " ", " ", " " },
                 { " ", " ", " ", " ", " ", " " },
-                { " ", " ", " ", " ", " ", " " },
-                { " ", " ", " ", " ", " ", " " },
-                { " ", " ", " ", " ", " ", " " },
-                { " ", " ", " ", " ", " ", " " },
+                { " ", " ", "A", " ", " ", " " },
+                { " ", " ", " ", " ", " ", "A" },
+                { " ", "A", " ", " ", " ", " " },
+                { " ", " ", " ", "R", " ", " " },
         };
         return tablero;
     }
@@ -67,7 +69,7 @@ public class Tablero {
         return tablero;
     }
 
-    private static int[][] getMatrizCentros() {
+    public static int[][] getMatrizCentros() {
         int[][] tablero = {
                 { 6, 5, 4, 4, 5, 6 },
                 { 5, 3, 2, 2, 3, 5 },
@@ -203,43 +205,54 @@ public class Tablero {
     private static String[][] getJugadaValidada(String[][] tablero, int fila, int columna, String oponente,
             String jugadorActual) {
 
-        if (tablero[fila][columna == 5 ? columna : columna + 1] == " ") {
+        int[][] centro = getMatrizCentros();
+
+        if (tablero[fila][columna == 5 ? columna : columna + 1] == " "
+                && (centro[fila][columna] < centro[fila][columna == 5 ? columna : columna + 1])) {
             tablero[fila][columna == 5 ? columna : columna + 1] = "*";
         }
 
-        if (tablero[fila][columna == 0 ? columna : columna - 1] == " ") {
+        if (tablero[fila][columna == 0 ? columna : columna - 1] == " "
+                && (centro[fila][columna] < centro[fila][columna == 0 ? columna : columna - 1])) {
             tablero[fila][columna == 0 ? columna : columna - 1] = "*";
         }
 
-        if (tablero[fila == 0 ? fila : fila - 1][columna == 0 ? columna : columna - 1] == " ") {
+        if (tablero[fila == 0 ? fila : fila - 1][columna == 0 ? columna : columna - 1] == " "
+                && (centro[fila][columna] < centro[fila == 0 ? fila : fila - 1][columna == 0 ? columna
+                        : columna - 1])) {
             tablero[fila == 0 ? fila : fila - 1][columna == 0 ? columna : columna - 1] = "*";
         }
 
-        if (tablero[fila == 0 ? fila : fila - 1][columna == 5 ? columna : columna + 1] == " ") {
+        if (tablero[fila == 0 ? fila : fila - 1][columna == 5 ? columna : columna + 1] == " "
+                && (centro[fila][columna] < centro[fila == 0 ? fila : fila - 1][columna == 5 ? columna
+                        : columna + 1])) {
             tablero[fila == 0 ? fila : fila - 1][columna == 5 ? columna : columna + 1] = "*";
         }
 
-        if (tablero[fila == 0 ? fila : fila - 1][columna] == " ") {
+        if (tablero[fila == 0 ? fila : fila - 1][columna] == " "
+                && (centro[fila][columna] < centro[fila == 0 ? fila : fila - 1][columna])) {
             tablero[fila == 0 ? fila : fila - 1][columna] = "*";
         }
 
-        if (tablero[fila == 5 ? fila : fila + 1][columna == 0 ? columna : columna - 1] == " ") {
+        if (tablero[fila == 5 ? fila : fila + 1][columna == 0 ? columna : columna - 1] == " "
+                && (centro[fila][columna] < centro[fila == 5 ? fila : fila + 1][columna == 0 ? columna
+                        : columna - 1])) {
             tablero[fila == 5 ? fila : fila + 1][columna == 0 ? columna : columna - 1] = "*";
         }
 
-        if (tablero[fila == 5 ? fila : fila + 1][columna == 5 ? columna : columna + 1] == " ") {
+        if (tablero[fila == 5 ? fila : fila + 1][columna == 5 ? columna : columna + 1] == " "
+                && (centro[fila][columna] < centro[fila == 5 ? fila : fila + 1][columna == 5 ? columna
+                        : columna + 1])) {
             tablero[fila == 5 ? fila : fila + 1][columna == 5 ? columna : columna + 1] = "*";
         }
 
-        if (tablero[fila == 5 ? fila : fila + 1][columna] == " ") {
+        if (tablero[fila == 5 ? fila : fila + 1][columna] == " "
+                && (centro[fila][columna] < centro[fila == 5 ? fila : fila + 1][columna])) {
             tablero[fila == 5 ? fila : fila + 1][columna] = "*";
         }
 
-        // Boolean diagonalSD = true;
-        // Boolean diagonalSI = true;
-
-        // Boolean diagonalID = true;
-        // Boolean diagonalII = true;
+        Boolean diagonalS = true;
+        Boolean diagonalI = true;
 
         Boolean columnaS = true;
         Boolean columnaI = true;
@@ -247,11 +260,11 @@ public class Tablero {
         Boolean filaD = true;
         Boolean filaI = true;
 
-        // Valido fila hacia la derecha
         for (int j = columna; j < tablero[0].length; j++) {
-            if ((tablero[fila][j == 5 ? j : j + 1] == " " || tablero[fila][j == 5 ? j : j + 1] == "*")
+            if (((tablero[fila][j == 5 ? j : j + 1] == " " || tablero[fila][j == 5 ? j : j + 1] == "*")
                     || tablero[fila][j == 5 ? j : j + 1] == oponente
-                            && filaD) {
+                            && filaD)
+                    && (centro[fila][columna] >= centro[fila][j == 5 ? j : j + 1])) {
                 if (tablero[fila][j == 5 ? j : j + 1] == oponente) {
                     tablero[fila][j == 5 ? j : j + 1] = "#";
                     filaD = false;
@@ -261,11 +274,10 @@ public class Tablero {
             }
         }
 
-        // Valido fila hacia la izquierda
         for (int j = columna; j >= 0; j--) {
-            if ((tablero[fila][j == 0 ? j : j - 1] == " " || tablero[fila][j == 0 ? j : j - 1] == "*"
+            if (((tablero[fila][j == 0 ? j : j - 1] == " " || tablero[fila][j == 0 ? j : j - 1] == "*"
                     || tablero[fila][j == 0 ? j : j - 1] == oponente)
-                    && filaI) {
+                    && filaI) && (centro[fila][columna] >= centro[fila][j == 0 ? j : j - 1])) {
                 if (tablero[fila][j == 0 ? j : j - 1] == oponente) {
                     tablero[fila][j == 0 ? j : j - 1] = "#";
                     filaI = false;
@@ -275,11 +287,10 @@ public class Tablero {
             }
         }
 
-        // Valido columna hacia abajo
         for (int i = fila; i < tablero.length; i++) {
-            if ((tablero[i == 5 ? i : i + 1][columna] == " " || tablero[i == 5 ? i : i + 1][columna] == "*"
+            if (((tablero[i == 5 ? i : i + 1][columna] == " " || tablero[i == 5 ? i : i + 1][columna] == "*"
                     || tablero[i == 5 ? i : i + 1][columna] == oponente)
-                    && columnaS) {
+                    && columnaS) && (centro[fila][columna] >= centro[i == 5 ? i : i + 1][columna])) {
                 if (tablero[i == 5 ? i : i + 1][columna] == oponente) {
                     tablero[i == 5 ? i : i + 1][columna] = "#";
                     columnaS = false;
@@ -289,11 +300,10 @@ public class Tablero {
             }
         }
 
-        // Valido columna hacia arriba
         for (int i = fila; i >= 0; i--) {
-            if ((tablero[i == 0 ? i : i - 1][columna] == " " || tablero[i == 0 ? i : i - 1][columna] == "*"
+            if (((tablero[i == 0 ? i : i - 1][columna] == " " || tablero[i == 0 ? i : i - 1][columna] == "*"
                     || tablero[i == 0 ? i : i - 1][columna] == oponente)
-                    && columnaI) {
+                    && columnaI) && (centro[fila][columna] >= centro[i == 0 ? i : i - 1][columna])) {
                 if (tablero[i == 0 ? i : i - 1][columna] == oponente) {
                     tablero[i == 0 ? i : i - 1][columna] = "#";
                     columnaI = false;

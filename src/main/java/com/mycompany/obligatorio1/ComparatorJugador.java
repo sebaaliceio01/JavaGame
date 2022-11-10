@@ -2,6 +2,9 @@ package com.mycompany.obligatorio1;
 
 import java.util.Comparator;
 
+//Sebastian Aliceio 286406
+//Ianco Rodriguez 243406
+
 public class ComparatorJugador implements Comparator<Jugador> {
     @Override
     public int compare(Jugador primerJugador, Jugador segundoJugador) {

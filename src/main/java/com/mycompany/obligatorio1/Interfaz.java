@@ -4,6 +4,9 @@
  */
 package com.mycompany.obligatorio1;
 
+//Sebastian Aliceio 286406
+//Ianco Rodriguez 243406
+
 /**
  *
  * @author Sebastian
